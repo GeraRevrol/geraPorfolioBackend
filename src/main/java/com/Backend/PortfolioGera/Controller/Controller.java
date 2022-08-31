@@ -13,6 +13,7 @@ import com.Backend.PortfolioGera.Service.IProyectosService;
 import com.Backend.PortfolioGera.Service.ISkillsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,7 @@ public class Controller {
     
     
       //Persona
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/personas/new")
     public void agregarPersona (@RequestBody persona pers) {
         persoServ.crearPersona(pers);
@@ -58,11 +60,13 @@ public class Controller {
         return persoServ.buscarPersona (idPersona);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/personas/editar/{idPersona}")
     public void editarPersona (@RequestBody persona pers) {
         persoServ.crearPersona(pers);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/personas/delete/{idPersona}")
     public void borrarPersona (@PathVariable Long idPersona) {
         persoServ.borrarPersona(idPersona);
@@ -70,6 +74,7 @@ public class Controller {
     
            
     //Skills
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/skills/new")
    public void agregarSkills (@RequestBody skills ski) {
         skillsServ.crearSkills(ski);
@@ -86,11 +91,13 @@ public class Controller {
        return skillsServ.buscarSkills(idSkills);
     }
    
-    @PutMapping ("/skills/editar/{idSkills}")
+   @PreAuthorize("hasRole('ADMIN')") 
+   @PutMapping ("/skills/editar/{idSkills}")
     public void editarSkills (@RequestBody skills ski) {
         skillsServ.crearSkills(ski);
     }
         
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/skills/delete/{idSkills}")
     public void borrarSkills (@PathVariable Long idSkills) {
         skillsServ.borrarSkills(idSkills);
@@ -99,6 +106,7 @@ public class Controller {
     
   
     //Experiencia
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/experiencia/new")
    public void agregarExperiencia (@RequestBody experiencia exp) {
         experienciaServ.crearExperiencia(exp);
@@ -115,11 +123,13 @@ public class Controller {
         return experienciaServ.buscarExperiencia(idExperiencia);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/experiencia/editar/{idExperiencia}")
     public void editarExperiencia (@RequestBody experiencia exp) {
         experienciaServ.crearExperiencia(exp);
     }
         
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/experiencia/delete/{idExperiencia}")
     public void borrarExperiencia (@PathVariable Long idExperiencia) {
         experienciaServ.borrarExperiencia(idExperiencia);
@@ -127,6 +137,7 @@ public class Controller {
     
    
     //Educacion
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/educacion/new")
    public void agregarEducacion (@RequestBody educacion edu) {
         educacionServ.crearEducacion(edu);
@@ -143,17 +154,20 @@ public class Controller {
          return educacionServ.buscarEducacion(idEducacion);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/educacion/editar/{idEducacion}")
     public void editarEducacion (@RequestBody educacion edu) {
         educacionServ.crearEducacion(edu);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/educacion/delete/{idEducacion}")
     public void borrarEducacion (@PathVariable Long idEducacion) {
         educacionServ.borrarEducacion(idEducacion);
     }
     
      //Proyectos
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping ("/proyectos/new")
    public void agregarProyectos (@RequestBody proyectos pro) {
         proyectosServ.crearProyectos(pro);
@@ -170,11 +184,13 @@ public class Controller {
         return proyectosServ.buscarProyectos(idProyectos);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/proyectos/editar/{idProyectos}")
     public void editarProyectos (@RequestBody proyectos pro) {
         proyectosServ.crearProyectos(pro);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping ("/proyectos/delete/{idProyectos}")
     public void borrarProyectos (@PathVariable Long idProyectos) {
         proyectosServ.borrarProyectos(idProyectos);
